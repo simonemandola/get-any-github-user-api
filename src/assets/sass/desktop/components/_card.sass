@@ -1,0 +1,171 @@
+// User Card Style Desktop
+
+.user
+  width: 100%
+  max-width: 60rem
+  height: 28rem
+  @include centerX
+  @include flex(space-between,center,row)
+
+  &__main
+    width: 30%
+    height: 100%
+    border-radius: $borer-radius
+    box-shadow: $box-shadow
+    background-color: $color__grey
+    @include flex(flex-start,flex-start,column)
+    overflow: auto
+
+    &-img
+      width: 100%
+      height: 10rem
+      background-color: $color__cultured-white
+
+      &-wrap
+        position: relative
+        top: 2rem
+        width: 8rem
+        height: 8rem
+        @include centerX
+        border-radius: 8rem
+        border: 4px solid $color__cultured-white
+        overflow: hidden
+
+      img
+        height: 100%
+        object-fit: cover
+        transition: $transition__-3
+        &:hover
+          transform: scale(1.05)
+          transition: $transition__-3
+
+    &-text
+      width: 100%
+      height: 100%
+      margin-top: $margin__2
+      box-sizing: border-box
+      padding:
+        left: $padding__1-5
+        right: $padding__1-5
+
+      & > p
+        margin: $margin__-5 0
+
+      &-bio
+        padding-top: $padding__2
+        line-height: .9rem
+
+  &__info-wrap
+    width: 70%
+    height: 100%
+    @include flex(space-between,center,column)
+    margin-left: $margin__2
+
+    form
+      width: 100%
+      height: 20%
+      border-radius: $borer-radius
+      box-shadow: $box-shadow
+      box-sizing: border-box
+      background-color: $color__grey
+      padding: $padding__1
+      @include flex(space-between,center,row)
+
+      label
+        width: 75%
+        height: 3rem
+        input
+          width: 100%
+          height: 100%
+          padding: $padding__1
+          box-sizing: border-box
+          border-radius: .3rem
+          color: $color__cultured-white
+          background-color: $color__dark-grey
+
+      button
+        width: 8.5rem
+        height: 100%
+        background-color: $color__green
+        color: $color__white
+        border-radius: .3rem
+        &:hover
+          opacity: .8
+
+  &__stats
+    width: 100%
+    height: 100%
+    @include flex(space-between,center,row)
+    border-radius: $borer-radius
+    box-shadow: $box-shadow
+    background-color: $color__dark-blue
+    margin-top: $margin__1
+    padding: $padding__2
+    box-sizing: border-box
+
+    & > div
+      width: 33.3%
+      height: 100%
+      position: relative
+      @include flex(flex-start,center,column)
+      perspective: 10rem
+
+      &::before
+        position: absolute
+        content: ''
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 2rem
+        opacity: .3
+        background-image: linear-gradient(to top, $color__green -180%, transparent 90%)
+        transform: rotateX(-50deg) scaleX(.6)
+        transform-style: preserve-3d
+        transition: $transition__-3
+
+      &:hover::before
+        opacity: 1
+        transition: $transition__-3
+
+      p
+        font-size: 2rem
+        margin: 0
+
+  &__links
+    width: 100%
+    height: 50%
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-template-rows: 1fr 1fr
+    gap: .5rem
+    border-radius: $borer-radius
+    box-shadow: $box-shadow
+    background-color: $color__dark-blue
+    margin-top: $margin__1
+    padding: $padding__2
+    box-sizing: border-box
+
+    & > div
+      width: 50%
+      height: 2rem
+      @include flex(flex-start,center,row)
+
+      & > i
+        font-size: 1.1rem
+        margin-right: $margin__-5
+
+    &-location
+      grid-column: 1/2
+      grid-row: 1/2
+
+    &-web
+      grid-column: 1/2
+      grid-row: 2/3
+
+    &-twitter
+      grid-column: 2/3
+      grid-row: 1/2
+
+    &-created
+      grid-column: 2/3
+      grid-row: 2/3
