@@ -10,6 +10,7 @@
 
 <script>
 
+import { ref, provide } from "vue";
 import Screensplash from "@/components/Screensplash.vue";
 import UserCard from "@/components/UserCard.vue";
 
@@ -19,6 +20,19 @@ export default {
   components:{
     Screensplash,
     UserCard
+  },
+
+  setup(){
+
+    let username = ref('');
+    provide('username', username);
+
+    let user = ref({});
+    provide('user', user)
+
+    return {
+      username
+    }
   }
 }
 </script>
