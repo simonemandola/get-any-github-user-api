@@ -9,6 +9,7 @@
       <div class="user__main-text">
         <p class="text-s user__main-text-name">{{ user.name }}</p>
         <p class="text-s user__main-text-username">{{ user.login }}</p>
+        <p class="text-s">BIO:</p>
         <p class="text-s user__main-text-bio">{{ user.bio }}</p>
       </div>
     </div>
@@ -52,7 +53,7 @@
 
 <script>
 
-import {computed, inject} from "vue";
+import {inject} from "vue";
 import UserForm from "@/components/UserForm";
 
 export default {
@@ -64,14 +65,6 @@ export default {
   setup() {
 
     let user = inject('user');
-
-    const checkEmpty = computed(()=>{
-      if(user.twitter_username === ""){
-        console.log("eeeeeeeee");
-        return user.twitter_username
-      }
-      return checkEmpty
-    })
 
     return {
       user

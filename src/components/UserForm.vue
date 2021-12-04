@@ -14,34 +14,42 @@
 
 <script>
 
-import { ref, inject } from "vue";
+import {ref, inject, computed} from "vue";
 
 export default {
+
   name: "UserForm",
 
  setup() {
 
     const API = 'https://api.github.com/users/';
+    let url = API;
     let usernameInput = ref('');
     let username = inject('username');
     let user = inject('user');
+    const DEFAULT_USER = 'octocat';
     let notFound = ref(false);
 
-    const getUser = async (url)=>{
-      await fetch(url)
-          .then(res => res.json())
-          .then(res => {
-            notFound = false;
-            user.value = res;
-          })
-          .catch(error => {
-            console.log("Not Found!");
-            notFound.value = true;
-            console.log(error);
-          });
-    }
+   const getUser = async () =>{
 
-    const findUser = ()=> {
+     try {
+
+       const resUser = await fetch(url);
+
+       if(resUser.status === 404) {
+         throw new Error("GitHub user not found!")
+       } else {
+         user.value = await resUser.json();
+         notFound.value = false;
+       }
+
+     } catch (error) {
+       console.error(error.message);
+       notFound.value = true;
+     }
+   }
+
+    const findUser = async ()=> {
 
       if (usernameInput.value === "") {
         alert("Please insert GitHub username. 😉");
@@ -50,13 +58,22 @@ export default {
 
         if(usernameInput.value.includes(' ')) usernameInput.value = usernameInput.value.replace(/ /g, "");
 
-        let url = API + usernameInput.value;
+        url = API + usernameInput.value;
 
-        getUser(url)
+        await getUser();
 
         usernameInput.value = '';
       }
     }
+
+    computed(()=>{
+      return notFound;
+   })
+
+    window.addEventListener('load', ()=>{
+      url = API + DEFAULT_USER;
+      getUser();
+    })
 
     return {
       username,
