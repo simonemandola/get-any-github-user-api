@@ -1,20 +1,25 @@
 <template>
+  <div class="user__info-wrap searchbar-mobile">
+    <user-form />
+  </div>
   <section class="user">
     <div class="user__main">
       <div class="user__main-img">
         <div class="user__main-img-wrap">
-          <img :src=" user.avatar_url " alt="github user image">
+          <img :src=" user.avatar_url " :alt="user.name + ' github user image'">
         </div>
       </div>
       <div class="user__main-text">
-        <p class="text-s user__main-text-name">{{ user.name }}</p>
-        <p class="text-s user__main-text-username">{{ user.login }}</p>
+        <p class="text-s user__main-text-name">{{ user.name !== null ? user.name : 'n/a' }}</p>
+        <p class="text-s user__main-text-username">{{ user.login !== null ? user.login : 'n/a' }}</p>
         <p class="text-s">BIO:</p>
-        <p class="text-s user__main-text-bio">{{ user.bio }}</p>
+        <p class="text-s user__main-text-bio">{{ user.bio !== null ? user.bio : 'n/a' }}</p>
       </div>
     </div>
     <div class="user__info-wrap">
-      <user-form />
+      <div class="searchbar-desktop">
+        <user-form/>
+      </div>
       <div class="user__stats">
         <div class="user__repos">
           <h4>Repos</h4>
@@ -32,19 +37,22 @@
       <div class="user__links">
         <div class="user__links-location">
           <i class="icon__pin"></i>
-          <p class="text-s">{{ user.location }}</p>
+          <p class="text-s">{{ user.location !== null ? user.location : 'n/a' }}</p>
         </div>
         <div class="user__links-web">
           <i class="icon__link"></i>
-          <a :href="user.blog" target="_blank" class="text-s">{{ user.blog }}</a>
+          <a :href="user.blog !== '' ? user.blog : '#' "
+             target="_blank" rel="nofollow"
+             class="text-s">{{ user.blog !== '' ? user.blog : 'n/a' }}
+          </a>
         </div>
         <div class="user__links-twitter">
           <i class="icon__twitter"></i>
-          <p class="text-s">{{ user.twitter_username }}</p>
+          <p class="text-s">{{ user.twitter_username !== null ? user.twitter_username : 'n/a' }}</p>
         </div>
         <div class="user__links-created">
           <i class="icon__candle"></i>
-          <p class="text-s">{{ user.created_at }}</p>
+          <p class="text-s">{{ user.created_at !== null ? user.created_at : 'n/a' }}</p>
         </div>
       </div>
     </div>
@@ -64,7 +72,7 @@ export default {
 
   setup() {
 
-    let user = inject('user');
+    const user = inject('user');
 
     return {
       user

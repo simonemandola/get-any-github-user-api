@@ -3,7 +3,7 @@
     <label>
       <input type="text"
              v-model.trim="usernameInput"
-             placeholder="Search GitHub username..."
+             placeholder="Insert GitHub username..."
              required
              :class="{ 'error' : notFound }"
       >
@@ -41,6 +41,7 @@ export default {
        } else {
          user.value = await resUser.json();
          notFound.value = false;
+         console.log(user.value.blog)
        }
 
      } catch (error) {
