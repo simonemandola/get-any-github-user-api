@@ -1,24 +1,22 @@
-# get-any-github-user-api
+#Get any GitHub user API
 
-## Project setup
-```
-npm install
-```
+Very easy APP to find any GitHub user by username.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+> Live view: https://confident-pasteur-d4f4cf.netlify.app/
 
-### Compiles and minifies for production
-```
-npm run build
-```
+##Screenshots
 
-### Lints and fixes files
-```
-npm run lint
-```
+![get any github username desktop screenshot](./mockups/get-any-github-user-desktop.png)
+****
+![get any github username mobile screenshot](./mockups/get-any-github-user-mobile.png)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+##Develop
+
+Developed with:
+- HTML
+- SASS
+- JavaScript
+- Vue.js
+- Gulp
+- npm packages
