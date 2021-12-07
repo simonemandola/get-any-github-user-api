@@ -145,13 +145,22 @@
       grid-column: 1/2
       grid-row: 2/3
 
+      a
+        word-break: break-word
+
     &-twitter
       grid-column: 2/3
       grid-row: 1/2
 
-    &-created
+    &-view-profile
       grid-column: 2/3
       grid-row: 2/3
+
+      a
+        color: $color__green
+
+        &:hover
+          text-decoration: underline
 
 form > label > input.error
   border: 2px solid $color__red

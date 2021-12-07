@@ -3,12 +3,13 @@
     <label>
       <input type="text"
              v-model.trim="usernameInput"
-             placeholder="Insert GitHub username..."
+             :placeholder="!isMobile ? 'Insert GitHub username...' : 'Username...' "
              required
              :class="{ 'error' : notFound }"
       >
     </label>
-    <button type="submit">Search</button>
+    <button type="submit" v-if="!isMobile">Search</button>
+    <button type="submit" v-if="isMobile"><i class="icon__search"></i></button>
   </form>
 </template>
 
@@ -29,6 +30,10 @@ export default {
     let user = inject('user');
     const DEFAULT_USER = 'octocat';
     let notFound = ref(false);
+    const BREAK_POINT = 600;
+    let isMobile = false;
+
+    (window.innerWidth <= BREAK_POINT) ? isMobile = true : isMobile = false;
 
    const getUser = async () =>{
 
@@ -41,7 +46,7 @@ export default {
        } else {
          user.value = await resUser.json();
          notFound.value = false;
-         console.log(user.value.blog)
+         console.log(user.value);
        }
 
      } catch (error) {
@@ -80,7 +85,8 @@ export default {
       username,
       findUser,
       usernameInput,
-      notFound
+      notFound,
+      isMobile
     }
   }
 }

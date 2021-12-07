@@ -50,9 +50,8 @@
           <i class="icon__twitter"></i>
           <p class="text-s">{{ user.twitter_username !== null ? user.twitter_username : 'n/a' }}</p>
         </div>
-        <div class="user__links-created">
-          <i class="icon__candle"></i>
-          <p class="text-s">{{ user.created_at !== null ? user.created_at : 'n/a' }}</p>
+        <div class="user__links-view-profile">
+          <a :href="user.html_url" target="_blank" class="text-s">View on GitHub</a>
         </div>
       </div>
     </div>
